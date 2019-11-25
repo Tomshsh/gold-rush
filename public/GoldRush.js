@@ -4,8 +4,8 @@ class GoldRush extends Matrix{
         this.p1 = {score: 0}
         this.p2 = {score: 0}
         this.matrix = []
-        this.loadBoard()
         this.levelCoins = 0
+        this.loadBoard()
 
     }
     loadBoard() {
@@ -14,7 +14,7 @@ class GoldRush extends Matrix{
             this.matrix.push([])
             for(let c = 0; c < 5; c++){
                 this.matrix[r][c] = Math.random() * 4 >= Math.random() * 6 ? "w" : "c"
-                this.matrix[r][c] == "c" ? this.levelCoins++ : null
+                if(this.matrix[r][c] == "c"){this.levelCoins++}
             }
         }
         this.loadPlayers()
@@ -25,9 +25,10 @@ class GoldRush extends Matrix{
         if((this.p1.row == this.p2.row && this.p1.col == this.p2.col) || this.matrix[this.p1.row][this.p1.col] == "w" || this.matrix[this.p2.row][this.p2.col] == "w"){
             return this.loadBoard()
         }
+        [this.p1,this.p2].forEach(p => this.matrix[p.row][p.col]=="c"? this.levelCoins-- : null)
         this.matrix[this.p1.row][this.p1.col] = 1
         this.matrix[this.p2.row][this.p2.col] = 2
-    }
+    }   
     play = (r, c, player) =>{
         let {row, col} = {row: this["p"+player].row, col: this["p"+player].col}
         if(!this.matrix[row + r] || !this.matrix[row + r][col + c]){return}
