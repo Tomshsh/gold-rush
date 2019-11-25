@@ -1,4 +1,3 @@
-const Matrix = require ('./Matrix')
 class GoldRush extends Matrix{
     constructor(){
         super()
@@ -21,20 +20,23 @@ class GoldRush extends Matrix{
         this.loadPlayers()
     }
     loadPlayers(){
-        this.p1 = {row: Math.floor(Math.random() * 5),col: Math.floor(Math.random() * 5)}
-        this.p2 = {row: Math.floor(Math.random() * 5),col: Math.floor(Math.random() * 5)}
+        Object.assign(this.p1,{row: Math.floor(Math.random() * 5),col: Math.floor(Math.random() * 5)})
+        Object.assign(this.p2,{row: Math.floor(Math.random() * 5),col: Math.floor(Math.random() * 5)})
         if((this.p1.row == this.p2.row && this.p1.col == this.p2.col) || this.matrix[this.p1.row][this.p1.col] == "w" || this.matrix[this.p2.row][this.p2.col] == "w"){
             return this.loadBoard()
         }
         this.matrix[this.p1.row][this.p1.col] = 1
         this.matrix[this.p2.row][this.p2.col] = 2
     }
-    play(row, col, player){
-        if(this.matrix[row][col] != "w"){
-            this.matrix[this["p"+player].row][this["p"+player].col] = "."
-            this["p"+player] = {row,col}
-            this.matrix[row][col] = player
+    play = (r, c, player) =>{
+        let {row, col} = {row: this["p"+player].row, col: this["p"+player].col}
+        if(!this.matrix[row + r] || !this.matrix[row + r][col + c]){return}
+        if(this.matrix[row+r][col+c] == "c" || this.matrix[row+r][col+c] == "."){
+            this.matrix[row][col] = "."
+            row += r; col += c;
+            Object.assign(this["p"+player],{row, col})
             this.matrix[row][col] == "c" ? this["p"+player].score ++ : null
+            this.matrix[row][col] = player
             this.checkWin()
         }
     }
@@ -46,10 +48,3 @@ class GoldRush extends Matrix{
     }    
 }
 
-const game = new GoldRush()
-game.print()
-console.log(game.p1)
-game.play(1,1,1)
-console.log("..................")
-game.print()
-console.log(game.p1)

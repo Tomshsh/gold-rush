@@ -1,8 +1,9 @@
+const source = $("#board-template").html()
+const template = Handlebars.compile(source)
 
 class Render{
-    renderBoard(){
-        const source = $("boardTemplate").html()
-        const template = Handlebars.compile(source)
-        let newHtml = template({matrix})
+    renderBoard(board){
+        let newHtml = template(board)
+        $("#container").empty().append(newHtml)
     }
 }

@@ -6,18 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="/jquery/dist/jquery.js"></script>
-    <script src="/handlebars/dist/handlebars.js"></script>
-    <!-- <script src="Matrix.js"></script> -->
-    <script src="Render.js"></script>
-    <script src="GoldRush.js"></script>
 </head>
 <body>
+    <div id = "container">
+    </div>
 </body>
 <script id="board-template" type = "text/x-handlebars-template">
-    {{#each matrix}}
-        <div class = "row">
-
-        </div>
+    <div id = "board">
+            {{#each matrix}}
+                <div class = "row">
+                    {{#each this}}
+                        <span class = "item">{{this}}</span>
+                    {{/each}}
+                </div>
+            {{/each}}
+            
+            <div id = "HUD">
+                <span>player 1: {{p1.score}}</span>
+                <span>player 2: {{p2.score}}</span>
+                <div id = "start-button">Start</div>
+            </div>
+            
+    </div>
 </script>
+<script src="/jquery/dist/jquery.js"></script>
+<script src="/handlebars/dist/handlebars.js"></script>
+<script src="Matrix.js"></script>
+<script src="Render.js"></script>
+<script src="GoldRush.js"></script>
+<script src="main.js"></script>
 </html>
