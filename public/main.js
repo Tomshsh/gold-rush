@@ -1,12 +1,20 @@
-const board = new GoldRush()
+let board = new GoldRush()
 const r1 = new Render()
 
 r1.renderBoard(board)
-
-$("body").keyup(e => {
+$("body").click("#start-button",()=>{
+    let rows = $("#rows-input").val()
+    let cols = $("#cols-input").val()
+    board = new GoldRush(rows,cols)
+    r1.renderBoard(board)
+    
+})
+$("body").keydown("#board",e => {
     let {p1,p2,play} = board
-    let player = "2"
-    e.key == "w" || e.key == "a" || e.key == "s" || e.key == "d" ? player = "1" : null
+    let player
+    e.key == "w" || e.key == "a" || e.key == "s" || e.key == "d" ? player = "1" : 
+    e.key == "i" || e.key == "j" || e.key == "k" || e.key == "l" ? player = "2" : null
+    
     switch (e.key) {
         case "w":
         case "i":
@@ -24,6 +32,6 @@ $("body").keyup(e => {
         case "l":
             play(0, 1, player)
     }
-    r1.renderBoard(board)
+    player ? r1.renderBoard(board): null
 })
 

@@ -6,33 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/0c25c19dc4.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id = "container">
     </div>
 </body>
 <script id="board-template" type = "text/x-handlebars-template">
-    <div id = "board">
+    <div id = "board" class="dfs">
             {{#each matrix}}
-                <div class = "row">
+                <div class = "dfs row">
                     {{#each this}}
-                        <span class = "item">{{this}}</span>
+                    {{#ifCond this "w" }}
+                        <div class ="dfs wall">{{this}}</div>
+                    {{/ifCond}}
+                    {{#ifCond this "1"}}
+                        <i class="fab fa-odnoklassniki-square p1"></i>
+                    {{/ifCond}}
+                    {{#ifCond this "2"}}
+                        <i class="fab fa-odnoklassniki-square p2"></i>
+                    {{/ifCond}}
+                    {{#ifCond this "c"}}
+                        <i class="fab fa-bitcoin coin"></i>
+                    {{/ifCond}}
+                    {{#ifCond this "."}}
+                        <i class="fas fa-chess-board empty"></i>
+                    {{/ifCond}}
                     {{/each}}
                 </div>
             {{/each}}
-            
-            <div id = "HUD">
-                <span>player 1: {{p1.score}}</span>
-                <span>player 2: {{p2.score}}</span>
-                <div id = "start-button">Start</div>
+        </div>
+        <div id = "HUD">
+            <div id ="info">
+                <span id ="p1">player 1: {{p1.score}}</span>
+                <span id ="p2">player 2: {{p2.score}}</span>
             </div>
-            
-    </div>
+            <input id = "rows-input" type="text" placeholder="rows">
+            <input id = "cols-input" type="text" placeholder="columns">
+            <div id = "start-button">Start</div>
+        </div>
 </script>
-<script src="/jquery/dist/jquery.js"></script>
-<script src="/handlebars/dist/handlebars.js"></script>
+<script src="jquery/dist/jquery.js"></script>
+<script src="handlebars/dist/handlebars.js"></script>
 <script src="Matrix.js"></script>
-<script src="Render.js"></script>
 <script src="GoldRush.js"></script>
+<script src="Render.js"></script>
 <script src="main.js"></script>
 </html>

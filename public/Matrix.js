@@ -1,9 +1,8 @@
 class Matrix{
-    constructor(row,col){
+    constructor(rows = 5,cols = 5){
         this.matrix=[]  
-        this.row=row
-        this.col=col
-        this.generateMatrix()
+        this.rows=rows
+        this.cols=cols
     }
     generateMatrix(){
         let num = 1

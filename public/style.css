@@ -1,0 +1,88 @@
+body{
+    margin: 0;
+}
+#container{
+    height:100vh;
+    display:grid;
+    grid-template-rows: 15fr 1fr;
+    gap:2px;
+}
+#board{
+    display: grid;
+    gap: 2px;
+    background-color: #BCAF9C;
+    border-radius: 10px;
+}
+.row{
+    display: grid;
+    gap:2px;
+}
+.wall{
+    background-color: grey;
+}
+.p1{
+    color: indigo;
+    
+    align-self: center;
+    justify-self: center;
+}
+.p2{
+    color: maroon;
+    
+    align-self: center;
+    justify-self: center;
+}
+.coin{
+    color: goldenrod;
+    align-self: center;
+    justify-self: center;
+}
+.empty{
+    color: hotpink;
+    
+    align-self: center;
+    justify-self: center;
+}
+#HUD{
+    height: 20vh;
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        "s s"
+        "i b";
+    background-color: #69626D;
+    border-radius: 10px;
+}
+#start-button{
+    display:grid;
+    justify-self: center;
+    width: 50%;
+    height:100%;
+    background-color: #DBD053;
+    grid-area:b;
+    align-content: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+#p1{
+    grid-area:s;
+    justify-self: start;
+}
+#p2{
+    grid-area: s;
+    justify-self: end;
+}
+input{
+    display: grid;
+    grid-area: i;
+
+}
+#rows-input{
+    justify-self: start;
+    width: min-content;
+}
+#cols-input{
+    justify-self: end;
+    width: min-content;
+}
