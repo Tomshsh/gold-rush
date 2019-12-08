@@ -1,3 +1,5 @@
+import { threadId } from "worker_threads"
+
 class GoldRush extends Matrix{
     constructor(rows, cols){
         super(rows, cols)
@@ -20,9 +22,10 @@ class GoldRush extends Matrix{
         for (let r = 0; r < this.rows; r++) {
             this.matrix.push([])
             for(let c = 0; c < this.cols; c++){
-
-                this.matrix[r][c] = Math.random() * 4 >= Math.random() * 6 ? "w" : "c"
-                if(this.matrix[r][c] == "c"){this.levelCoins++}
+                this.matrix[r][c].push({w:[0,0,0,0]})
+                Object.assign(this.matrix[r][c],Math.random() * 4 >= Math.random() * 6 ? "c": null) 
+                if(this.matrix[r][c].c){this.levelCoins++}
+                this.print()
             }
         }
         this.loadPlayers()
